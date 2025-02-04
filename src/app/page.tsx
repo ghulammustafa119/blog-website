@@ -2,6 +2,7 @@
 import Hero from "@/components/Hero";
 import { client } from "@/sanity/lib/client";
 
+  import { Blog } from "./type";
 
  const Home = async () => {
 
