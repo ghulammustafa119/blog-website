@@ -1,11 +1,25 @@
 
 import Hero from "@/components/Hero";
+import { client } from "@/sanity/lib/client";
 
 
-export default function Home() {
+ const Home = async () => {
+
+
+ const query = `*[_type == 'blog']  | order(_updatedAt asc){
+  title,description,image,"slug":slug.current
+}`
+  const data:Blog[] = await client.fetch(query)
+  console.log(data)
   return (
-    <> 
-        <Hero/>
-    </>
+    <div> 
+
+       {
+        data.map((item:Blog) =>(
+          <Hero item={item} key={item.slug}/>
+        ))
+       }
+    </div>
   );
 }
+export default Home
